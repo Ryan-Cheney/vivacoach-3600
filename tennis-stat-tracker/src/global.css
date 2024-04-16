@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #E0F7FA; /* Light blue background */
+    font-family: Arial, sans-serif; /* Set a default font */
+    text-align: center;
+  }
+  
+  .app-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .dashboard, .track-match {
+    margin-top: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    background: white;
+    max-width: 600px; /* Limit the content width */
+    width: 100%; /* Take up full width up to max-width */
+  }
+  
+  .button {
+    background-color: #263238; /* Dark background for buttons */
+    color: #FFFFFF; /* White text */
+    border: none;
+    border-radius: 20px; /* Rounded edges */
+    padding: 10px 20px; /* Larger size */
+    margin: 10px; /* Space out buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }

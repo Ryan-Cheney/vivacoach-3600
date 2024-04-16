@@ -1,0 +1,25 @@
+.track-match {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .track-match button {
+    background-color: #263238; /* Dark background for buttons */
+    color: #FFFFFF; /* White text */
+    border: none;
+    border-radius: 20px; /* Rounded edges */
+    padding: 10px 20px; /* Larger size */
+    margin: 10px; /* Space out buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .track-match button:hover {
+    background-color: #37474F; /* Slightly lighter on hover */
+  }
+  
+  .track-match h2, .track-match h3 {
+    color: #263238; /* Dark text for headings */
+  }
+  
