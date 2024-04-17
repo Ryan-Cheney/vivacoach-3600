@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TrackMatch.css'; // Import component-specific styles
+import { postMatchData } from '../api/api'; // Import the postMatchData function from the API
 
 function TrackMatch({ addMatchData }) {
   const navigate = useNavigate();
@@ -107,5 +108,18 @@ function TrackMatch({ addMatchData }) {
     </div>
   );
 }
+
+// const handleMatchOutcome = async (outcome) => {
+//     const matchData = {
+//         points: points,  // collected from state
+//         matchOutcome: outcome  // outcome parameter from the button click
+//     };
+//     const result = await postMatchData(matchData);
+//     if (result) {
+//         navigate('/'); // Navigate back to the home screen/dashboard
+//     } else {
+//         console.error('Error posting match data');
+//     }
+// };
 
 export default TrackMatch;
