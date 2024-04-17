@@ -1,7 +1,6 @@
 from django.urls import path
-from . import views
+from .views import MatchView
 
 urlpatterns = [
-    path('', views.getData),
-    path('add/', views.addItem),
+    path('matches/', MatchView.as_view(), name='matches'),
 ]

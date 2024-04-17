@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from base.models import Item
+from base.models import Match
 
-class ItemSerializer(serializers.ModelSerializer):
+class MatchSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Item
-        fields = '__all__'
+        model = Match
+        fields = ['points', 'matchOutcome']

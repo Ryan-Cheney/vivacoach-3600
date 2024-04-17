@@ -50,10 +50,37 @@ function TrackMatch({ addMatchData }) {
     setStage('matchOutcome'); // Transition to selecting the match outcome
   };
 
-  const handleMatchOutcome = (outcome) => {
-    addMatchData({ points, matchOutcome: outcome }); // Send the match data to App.js
-    navigate('/'); // Navigate back to the home screen/dashboard
-  };
+  const handleMatchOutcome = async (outcome) => {
+
+    console.log('Outcome being posted:', outcome); 
+
+    const matchData = {
+      points: points,
+      matchOutcome: outcome
+    };
+  
+    try {
+      const response = await fetch('http://localhost:8000/api/matches', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(matchData)
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Failed to post match data: ${response.status} ${response.statusText}`);
+      }
+  
+      const result = await response.json();
+      alert('Match data successfully saved!'); // Provide a success message to the user
+      navigate('/'); // Navigate after successful post
+    } catch (error) {
+      console.error('Error posting match data:', error);
+      alert('Error posting match data: ' + error.message); // Display error to the user
+    }
+  };  
+  
 
   // Dynamically determine reason options based on point type and outcome
   const reasonOptions = () => {
@@ -71,6 +98,7 @@ function TrackMatch({ addMatchData }) {
   return (
     <div className="track-match">
       <h2>Track Match</h2>
+
       {stage === 'pointType' && (
         <>
           <button onClick={() => handleSelection('type', 'service')}>Service Point</button>
@@ -108,18 +136,5 @@ function TrackMatch({ addMatchData }) {
     </div>
   );
 }
-
-// const handleMatchOutcome = async (outcome) => {
-//     const matchData = {
-//         points: points,  // collected from state
-//         matchOutcome: outcome  // outcome parameter from the button click
-//     };
-//     const result = await postMatchData(matchData);
-//     if (result) {
-//         navigate('/'); // Navigate back to the home screen/dashboard
-//     } else {
-//         console.error('Error posting match data');
-//     }
-// };
 
 export default TrackMatch;
