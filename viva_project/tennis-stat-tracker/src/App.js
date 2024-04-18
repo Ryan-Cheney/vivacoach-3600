@@ -15,6 +15,23 @@ function HomeScreenButton({ label, navigateTo }) {
 function App() {
   const [matchData, setMatchData] = useState([]);
 
+  useEffect(() => {
+    const fetchMatchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/matches/');
+        if (!response.ok) {
+          throw new Error('Failed to fetch matches: ' + response.statusText);
+        }
+        const data = await response.json();
+        setMatchData(data);
+      } catch (error) {
+        console.error("Error fetching match data:", error);
+      }
+    };
+
+    fetchMatchData();
+  }, []);
+
   const addMatchData = (match) => {
     setMatchData((prev) => [...prev, match]);
   };
@@ -64,9 +81,7 @@ function App() {
             path="/"
             element={
               <div className="dashboard">
-                <div className="card">
-                  Total Matches Played: {totalMatchesPlayed}
-                </div>
+                <div className="card">Total Matches Played: {totalMatchesPlayed}</div>
                 <div className="card">Match Win %: {matchWinPercentage}%</div>
                 <div className="card">Point Win %: {pointWinPercentage}%</div>
                 <div className="card">Aces per Match: {acesPerMatch}</div>
